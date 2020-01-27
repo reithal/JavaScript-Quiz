@@ -1,0 +1,19 @@
+body {
+  background-color: black;
+  background-image: url("../images/background3.jpg");
+  background-size: cover;
+}
+section {
+
+  padding-bottom: 200px;
+}
+.hidden {
+  display: none;
+}
+
+#quiz {
+  border-radius: 20px;
+  padding: 10px;
+  background-color: ghostwhite;
+  width: 80%;
+}
