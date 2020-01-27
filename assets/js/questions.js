@@ -13,6 +13,16 @@ var questions = [
     title: "Javascript and Java are the same language.",
     choices: ["true", "false"],
     answer: "false"
+  },
+  {
+    title: "Inside which HTML element do we put the JavaScript?",
+    choices: ["<js>", "<scripting>", "<javascript>", "<script>"],
+    answer: "<script>"
+  },
+  {
+    title: "Where is the correct place to insert a JavaScript?",
+    choices: ["The <body> section", "Both the <head> section and the <body> section", "The <head> section"],
+    answer: "Both the <head> section and the <body> section"
   }
-//TODO: Add more questions
+
 ];

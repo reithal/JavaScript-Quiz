@@ -23,23 +23,42 @@
   <section>
     <div class="container" id="main">
       <div class="jumbotron" id="welcome">
-        <h1 class="display-4">Welcome to JavaScript Quiz!</h1>
-        <p class="lead">This is a simple quiz to test how much you learned about JavaScript.</p>
+        <h1 class="display-4">Welcome to the JavaScript Quiz!</h1>
+        <p class="lead">This is a simple quiz to find out how much you learned about JavaScript.</p>
         <hr class="my-4">
-        <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+        <p>You will have 10 seconds per question to complete the quiz. Find out if you are the highest scorer. Each question is worth 5 points.</p>
         <a class="btn btn-primary btn-lg" id="begin" href="#" role="button">Begin Quiz</a>
       </div>
+      <!-- Container to hold the quiz portion -->
       <div class="container hidden" id="quiz">
         <div class="row m-2 p-2"  id="question">
-
-
         </div>
         <hr>
-        <div class="row btn-group align-items-center m-2" role="group" aria-label="answer-choices" id="choices"></div>
+        <div class="row btn-group align-items-center m-2" role="group" aria-label="answer-choices" id="choices">
+        </div>
         <br>
-        <div class="row" id="result"></div>
-        
+        <div class="alert alert-danger alert-dismissable fade show m-2" role="alert" id="incorrectAlert">
+          <p>Incorrect!</p>
+        </div>
+          <div class="alert alert-success alert-dismissable fade show m-2" role="alert" id="correctAlert">
+            <p>Correct!</p>
+          </div>
       </div>
+      <!-- Container for the final scores -->
+      <div class="container hidden" id="scores">
+        <div class="jumbotron" id="highscores">
+          <h1 class="display-4">Quiz Complete!</h1>
+          <h4 id="scoreTotal">Your Total Score is: </h4>
+          <p class="lead" id="requestScore">Please enter your initials to record your score.</p>
+          <hr class="my-4">
+        <form class="form-inline" id="scoreSubmission">
+            <div class="form-group mx-sm-3 mb-2">
+              <label for="inputInitials" class="sr-only">Initials</label>
+              <input type="text" class="form-control" id="inputInitials" placeholder="ABC">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2" id="sumbitScoreBtn">Submit Scores</button>
+          </form>
+        </div>
     </div>
   </section>
   <footer>

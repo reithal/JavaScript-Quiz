@@ -17,3 +17,11 @@ section {
   background-color: ghostwhite;
   width: 80%;
 }
+
+.currentHighScore {
+  font-weight: 500;
+}
+
+#inputInitials {
+  text-transform: uppercase;
+}

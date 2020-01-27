@@ -1,9 +1,13 @@
+//Setting Global Scope Variables
 var questionDisplay = $('#question');
 var choicesDisplay = $('#choices');
 var resultsDisplay = $('#result');
 var score = 0;
 var quizTime = questions.length * 10;
+var counter;
 
+
+// Functions
 function getRandomQuestion() {
   var randomIndex = Math.floor(Math.random() * questions.length);
   var randomQuestion = questions[randomIndex];
@@ -38,50 +42,105 @@ function changeQuestion() {
   console.log("I should be showing the next question");
   }
   else 
-  {console.log("no more questions.")}
+  {
+    showScorePage();
+  }
+}
+
+function showScorePage() {
+  clearInterval(counter);
+  $('#quiz').hide("normal");
+  $('#scoreTotal').append(score);
+  $('#scores').show("normal");
+
+}
+
+function recordScore (initialsValue) {
+
+  var highScores = {
+    user: initialsValue,
+    userScore: score
+  };
+
+  $('#scoreSubmission').hide();
+  var currentHighScore = JSON.parse(localStorage.getItem("highScores"))
+  // Check if Json.Parse() returned null or if the tester score is higher
+  if (!currentHighScore   || score >= currentHighScore.userScore )
+  {
+    localStorage.setItem("highScores", JSON.stringify(highScores));
+    $('#requestScore').html("Congratulations " + initialsValue + ", you have the new high score!");
+  }
+  else {
+    $('#requestScore').html("The current high score belongs to <span class='currentHighScore'>" + currentHighScore.user + "</span> with a score of: <span class='currentHighScore'>" + currentHighScore.userScore + "</span> points." );
+  }
+  
+  
 }
 
 
+// Initial start
 var currentQuestion = getRandomQuestion();
-console.log(currentQuestion);
+//console.log(currentQuestion);
+$('#incorrectAlert').hide();
+$('#correctAlert').hide();
 showQuestion(currentQuestion);
 
 
 
+// Event Handlers
 $('#choices').on("click", function(e) {
+  /* Debugging
   console.log(e.target);
   console.log(currentQuestion);
   console.log(currentQuestion.title);
   console.log(currentQuestion.answer);
-
+*/
   if(e.target.textContent === currentQuestion.answer)
   {
-    alert("you clicked the correct answer: " + currentQuestion.answer);
-    score++;
-    changeQuestion();
+    $('#correctAlert').show("normal");
+    //alert("you clicked the correct answer: " + currentQuestion.answer);
+    score = score + 5;
+    $('#correctAlert').hide("normal");
+    setTimeout(changeQuestion(), 10000);
+  
   }
+  else if (e.target.classList.contains("btn-answers"))
+  {
+    $('#incorrectAlert').show("normal");
+    $('#incorrectAlert').hide("normal");
+    setTimeout(changeQuestion(), 10000);
+  }
+  else{
+    return
+  }
+
+})
+
+$('#sumbitScoreBtn').on("click", function(event){
+event.preventDefault();
+var userInitials = $('#inputInitials').val().toUpperCase();
+console.log(userInitials);
+recordScore(userInitials);
 })
 
 
-
-$('#begin').on("click", function() {
+$('#begin').on("click", function(event) {
+  event.preventDefault();
     // Replace the Welcome screen and show the quiz
     $('#welcome').hide("normal");
     $('#quiz').show("normal");
 
     // Start the time
-   var counter=setInterval(timer, 1000); 
+     counter=setInterval(timer, 1000); 
     
     function timer()
     {
       quizTime--;
       if (quizTime <= 0)
       {
-        // TODO: Score screen
-        console.log("times up"); 
+        //console.log("times up"); 
         clearInterval(counter);
-        $('#quiz').hide("normal");
-        $('#welcome').show("normal");
+        showScorePage();
         return;
       }
     
