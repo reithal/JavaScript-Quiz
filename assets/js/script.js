@@ -69,7 +69,10 @@ function changeQuestion() {
     showScorePage();
   }
 };
-
+/**
+ *  Stops the time and hides the quiz and presents users score.
+ *
+ */
 function showScorePage() {
   clearInterval(counter);
   $('#quiz').hide("normal");
@@ -77,7 +80,11 @@ function showScorePage() {
   $('#scores').show("normal");
 
 };
-
+/**
+ * stores the user's score and initials into an object.
+ *
+ * @param {*} initialsValue Represents the user's initials entered on the score div.
+ */
 function recordScore (initialsValue) {
 
   var highScores = {
@@ -146,7 +153,7 @@ event.preventDefault();
 var userInitials = $('#inputInitials').val().toUpperCase();
 //console.log(userInitials);
 recordScore(userInitials);
-})
+});
 
 // On click handler to begin the quiz and start the timer.
 

@@ -1,10 +1,15 @@
+.navbar {
+  border-bottom: 2px solid;
+  color: ghostwhite;
+}
+
 body {
   background-color: black;
   background-image: url("../images/background3.jpg");
   background-size: cover;
 }
 section {
-
+  padding-top: 20px;
   padding-bottom: 200px;
 }
 .hidden {
@@ -20,6 +25,18 @@ section {
 
 .currentHighScore {
   font-weight: 500;
+}
+
+footer {
+  text-align: center;
+  padding-top: 5px;
+  background-color: rgb(70, 69, 69);
+  color: ghostwhite;
+  width: 100%;
+  position: fixed;
+  border-top: 2px solid;
+  left: 0;
+  bottom: 0;
 }
 
 #inputInitials {
